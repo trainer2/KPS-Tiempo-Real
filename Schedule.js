@@ -5,15 +5,17 @@
 /*			Schedule e interfaz grafica  	*/
 
 
-let durSamp = 256.0;
-let durTiempo = durSamp/sr;
-let callInterval = 2000.0* durTiempo;//ms
-let buffTemp = [];
-for (var i = 0; i < durSamp; i++) 	buffTemp.push(0.);
-const  nbuffers = Math.floor(callInterval/1000.0/durTiempo) +1; //La cantidad de buffers que necesito
+const durSamp = 512.0;
+const durTiempo = durSamp/sr;
+const callInterval = 2000.0* durTiempo;//ms
+//let buffTemp = [];
+//for (var i = 0; i < durSamp; i++) 	buffTemp.push(0.);
+//const  nbuffers = Math.floor(callInterval/1000.0/durTiempo) +1; //La cantidad de buffers que necesito
+
+
 console.log('Duración de un buffer:' + durTiempo.toString() + 's');
 console.log('Sample Rate:' + sr.toString());
-console.log('Buffers por stream:' +nbuffers.toString());
+//console.log('Buffers por stream:' +nbuffers.toString());
 console.log('Stream Period:' + callInterval.toString() + 'ms');
 
 
@@ -55,21 +57,18 @@ function stream(){
 		  	while(Fuente1.queuedBufs < 3 || context.currentTime + 0.125 > Fuente1.finUltimo)
 		  	{
 		  		//crearBuffer(Fuente1);
-		  		[buff, phi1] = crearBufferSenoidal(freqSlider1.value, phi1);
-		  		interpolado= interpolarIdeal(buff);
-		  		Fuente1.cargarBuffers([buff]);
+		  		Fuente1.crearBufferSenoidal(1);
 		  		Fuente1.start(Fuente1.finUltimo);
-		  		Fuente1.finUltimo += interpolado.length/sr;
+		  		Fuente1.finUltimo += Fuente1.bufsize/sr;
 		  	}
 
 		  	if(Fuente2.on)
 
 		  		while(Fuente2.queuedBufs < 3 || context.currentTime +0.125 > Fuente2.finUltimo){
 
-			  		buffer2  = crearBuffer(Fuente2);
-			  		Fuente2.cargarBuffers(buffer2);
+			  		Fuente2.crearBufferSenoidal(2);
 			  		Fuente2.start(Fuente2.finUltimo);
-		  			Fuente2.finUltimo +=durSamp/sr; //esto tambien puede ir aparte
+		  			Fuente2.finUltimo +=Fuente2.bufsize/sr; //esto tambien puede ir aparte
 		  		}
 		
 	//console.log('Ultimo buffer scheduled para t=' + (finUltimo).toString() +'s' );

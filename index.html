@@ -12,8 +12,11 @@
 <h1> Karplus Strong en Tiempo Real  </h1>
 <h2>Falta: </h2>
 <h3>-Precisar más la afinación en funcion de S y p <br>
--Sacar el DC en algunas situaciones \n <br>
--Envolvente
+-Sacar el DC en algunas situaciones  <br>
+-Envolvente <br>
+-MIDI <br>
+-Polifonia <br>
+-Master gain
 </h3>
 
 
@@ -64,6 +67,8 @@
 
 
   <div class="Controles de KPS">
+  <button id="fineTune" class= "button tune"> Fine Tune </button>
+
   <p> Vibrato: <span id='vibTxt'>  </span> | <span id= 'vibTxtHz'> </span>
     <input type="checkbox" class="input-switch" id="onVib" unchecked />
     </p> 
@@ -74,8 +79,9 @@
      <input type="range" min="0" max="1" value="1" step="0.1" class="slider" id="bSlider">
 
  <p> Stretch Factor: <span id='sTxt'>  </span>
-     <label>  ||  &nbsp&nbsp&nbsp&nbsp&nbsp S adaptativo (para frecuencias más precisas. No anda bien cuando pide ser negativo. Creo que para corregir puedo usar "floor" en vez de "round" para setear p):  </label> 
+     <!-- <label>  ||  &nbsp&nbsp&nbsp&nbsp&nbsp S adaptativo (para frecuencias más precisas. No anda bien cuando pide ser negativo. Creo que para corregir puedo usar "floor" en vez de "round" para setear p):  </label>  
     <input type="checkbox" class="input-switch" id="autoSButton" unchecked />
+     -->
      <input type="range" min="1" max="20" value="1" step="0.1" class="slider" id="sSlider">
 
  <p> Initial wavetable copies: <span id='cTxt'>  </span>
@@ -84,7 +90,7 @@
 
 </div>
 
-<h5> Relacion de recurrencia </h5>
+<h5> Relacion de recurrencia: </h5>
 <form>
   <select id="formula" size="4" onchange="cambiarRelacionRecurrencia()">
     <option value="1">Promedio:  f(t-d) + f(t-d-1) /2 (decay Stretching probabilistico) </option>
@@ -102,6 +108,7 @@
 
 
 <script src="Process.js"></script>
+<script src="uicontrols.js"></script>
 <script src="Draw.js"></script>
 <script src="Schedule.js"></script>
 
