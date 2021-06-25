@@ -10,8 +10,11 @@
 
 
 <h1> Karplus Strong en Tiempo Real  </h1>
-<h2>Falta ver bien el tema de la afinacion en funcion de p y S</h2>
-<h3>Falta que cuando cambias la frecuencia en tiempo real se vuelva a sacar el DC y que el buffer de "anteriores" tenga 0s, falta envolvente</h3>
+<h2>Falta: </h2>
+<h3>-Precisar más la afinación en funcion de S y p <br>
+-Sacar el DC en algunas situaciones \n <br>
+-Envolvente
+</h3>
 
 
 <button id="play1" class="button play">Play </button>
@@ -50,11 +53,15 @@
     <input type="checkbox" class="input-switch" id="On3" checked />
       Bufsize: <span id='bufSize3'> </span>  &nbsp&nbsp 
       Frecuencia real:  <span id='freqReal3'> </span>
+&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+      <button type="button" id="boton3" class= "button" value = "Retrigger osc3" onclick="retrigger()"> Rettriger  </button>
+
     </p> 
+
+
   <input type="range" min="1" max="800" value="400" step="1" class="slider" id="freqSlider3">
 </div>
 
-<button type="button" id="boton3" class= "button" value = "Retrigger osc3" onclick="retrigger()"> Rettriger Osc3 </button>
 
   <div class="Controles de KPS">
   <p> Vibrato: <span id='vibTxt'>  </span> | <span id= 'vibTxtHz'> </span>
@@ -67,7 +74,7 @@
      <input type="range" min="0" max="1" value="1" step="0.1" class="slider" id="bSlider">
 
  <p> Stretch Factor: <span id='sTxt'>  </span>
-     <label>  ||  &nbsp&nbsp&nbsp&nbsp&nbsp S adaptativo (para conseguir frecuencias más precisas. No anda bien cuando pide ser negativo. Para corregir esto, puedo usar "floor" en vez de "round" para setear p):  </label> 
+     <label>  ||  &nbsp&nbsp&nbsp&nbsp&nbsp S adaptativo (para frecuencias más precisas. No anda bien cuando pide ser negativo. Creo que para corregir puedo usar "floor" en vez de "round" para setear p):  </label> 
     <input type="checkbox" class="input-switch" id="autoSButton" unchecked />
      <input type="range" min="1" max="20" value="1" step="0.1" class="slider" id="sSlider">
 
@@ -87,13 +94,9 @@
   </select>
 </form> 
 
-
-  <br> <br>
   <p> Tiempo Transcurrido: <span id='tiempoTxt'> </span> </p>
 
 </div>
-
-<br><br>
 
 <canvas id="audio_visual" height="500" width="500" style="border:1px solid #000000;" onclick="pausado = !pausado;"></canvas>
 
